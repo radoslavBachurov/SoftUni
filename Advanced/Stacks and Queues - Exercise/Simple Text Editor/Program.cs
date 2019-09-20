@@ -32,12 +32,7 @@ namespace Simple_Text_Editor
                 else if (commandArr[0] == "3")
                 {
                     int index = int.Parse(commandArr[1]);
-
-                    if (text.Length > index-1)
-                    {
-                        Console.WriteLine(text[index-1].ToString());
-                    }
-
+                    Console.WriteLine(text[index - 1].ToString());
                 }
                 else if (commandArr[0] == "4")
                 {

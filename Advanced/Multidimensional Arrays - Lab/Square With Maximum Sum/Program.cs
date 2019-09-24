@@ -47,7 +47,7 @@ namespace Square_With_Maximum_Sum
             }
 
             Console.WriteLine($"{newMatrix[maxIndexRow,maxIndexCol]} {newMatrix[maxIndexRow,maxIndexCol+1]}");
-            Console.WriteLine($"{newMatrix[maxIndexRow+1,maxIndexCol]}{newMatrix[maxIndexRow+1,maxIndexCol+1]}");
+            Console.WriteLine($"{newMatrix[maxIndexRow+1,maxIndexCol]} {newMatrix[maxIndexRow+1,maxIndexCol+1]}");
             Console.WriteLine($"{max}");
         }
     }

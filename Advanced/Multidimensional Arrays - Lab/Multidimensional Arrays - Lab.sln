@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Primary Diagonal", "Primary
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Symbol in Matrix", "Symbol in Matrix\Symbol in Matrix.csproj", "{84AA2DD6-EC67-48FE-99C3-638B6F3106C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square With Maximum Sum", "Square With Maximum Sum\Square With Maximum Sum.csproj", "{E283FAE9-F981-4752-A28E-8845B3FB9DCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Square With Maximum Sum", "Square With Maximum Sum\Square With Maximum Sum.csproj", "{E283FAE9-F981-4752-A28E-8845B3FB9DCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jagged-Array Modification", "Jagged-Array Modification\Jagged-Array Modification.csproj", "{2FEF4071-03FC-4E40-BE90-5A8250AE2ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pascal Triangle", "Pascal Triangle\Pascal Triangle.csproj", "{CEE01AED-A350-493A-959D-962E04E496C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{E283FAE9-F981-4752-A28E-8845B3FB9DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E283FAE9-F981-4752-A28E-8845B3FB9DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E283FAE9-F981-4752-A28E-8845B3FB9DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEF4071-03FC-4E40-BE90-5A8250AE2ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEF4071-03FC-4E40-BE90-5A8250AE2ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEF4071-03FC-4E40-BE90-5A8250AE2ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEF4071-03FC-4E40-BE90-5A8250AE2ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE01AED-A350-493A-959D-962E04E496C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE01AED-A350-493A-959D-962E04E496C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE01AED-A350-493A-959D-962E04E496C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE01AED-A350-493A-959D-962E04E496C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

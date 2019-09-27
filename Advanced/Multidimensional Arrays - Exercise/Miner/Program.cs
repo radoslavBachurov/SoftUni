@@ -9,7 +9,7 @@ namespace Miner
         static void Main(string[] args)
         {
             int fieldSize = int.Parse(Console.ReadLine());
-            string[,] field = new string[fieldSize, fieldSize];
+            string[][] field = new string[fieldSize][];
 
             string[] moves = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
@@ -17,7 +17,27 @@ namespace Miner
             int currentColl = 0;
             int coalCollected = 0;
             int coalsOnField = 0;
-            CreatingCoalField(fieldSize, field, ref currentRow, ref currentColl, ref coalsOnField);
+
+            for (int i = 0; i < fieldSize; i++)
+            {
+                string[] input = Regex.Split(Console.ReadLine(), @"\s+").ToArray();
+                field[i] = new string[input.Length];
+
+                for (int t = 0; t < fieldSize; t++)
+                {
+                    field[i] [t] = input[t];
+
+                    if (input[t] == "s")
+                    {
+                        currentRow = i;
+                        currentColl = t;
+                    }
+                    if (input[t] == "c")
+                    {
+                        coalsOnField++;
+                    }
+                }
+            }
 
             for (int i = 0; i < moves.Length; i++)
             {
@@ -49,9 +69,9 @@ namespace Miner
                         break;
                 }
 
-                if (field[currentRow, currentColl] == "c")
+                if (field[currentRow] [currentColl] == "c")
                 {
-                    field[currentRow, currentColl] = "*";
+                    field[currentRow] [currentColl] = "*";
                     coalCollected++;
 
                     if (coalCollected == coalsOnField)
@@ -61,7 +81,7 @@ namespace Miner
                     }
                 }
 
-                if (field[currentRow, currentColl] == "e")
+                if (field[currentRow] [currentColl] == "e")
                 {
                     Console.WriteLine($"Game over! ({currentRow}, {currentColl})");
                     return;
@@ -70,27 +90,6 @@ namespace Miner
 
             Console.WriteLine($"{coalsOnField - coalCollected} coals left. ({currentRow}, {currentColl})");
         }
-        private static void CreatingCoalField(int fieldSize, string[,] field, ref int currentRow, ref int currentColl, ref int coalsOnField)
-        {
-            for (int i = 0; i < fieldSize; i++)
-            {
-                string[] input = Regex.Split(Console.ReadLine(), @"\s+").ToArray();
-
-                for (int t = 0; t < fieldSize; t++)
-                {
-                    field[i, t] = input[t];
-
-                    if (input[t] == "s")
-                    {
-                        currentRow = i;
-                        currentColl = t;
-                    }
-                    if (input[t] == "c")
-                    {
-                        coalsOnField++;
-                    }
-                }
-            }
-        }
+       
     }
 }

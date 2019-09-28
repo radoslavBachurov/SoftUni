@@ -17,37 +17,12 @@ namespace Miner
             int currentColl = 0;
             int coalCollected = 0;
             int coalsOnField = 0;
+
             CreatingCoalField(fieldSize, field, ref currentRow, ref currentColl, ref coalsOnField);
 
             for (int i = 0; i < moves.Length; i++)
             {
-                switch (moves[i])
-                {
-                    case "left":
-                        if (currentColl - 1 >= 0)
-                        {
-                            currentColl -= 1;
-                        }
-                        break;
-                    case "right":
-                        if (currentColl + 1 < fieldSize)
-                        {
-                            currentColl += 1;
-                        }
-                        break;
-                    case "up":
-                        if (currentRow - 1 >= 0)
-                        {
-                            currentRow -= 1;
-                        }
-                        break;
-                    case "down":
-                        if (currentRow + 1 < fieldSize)
-                        {
-                            currentRow += 1;
-                        }
-                        break;
-                }
+                MakingMoves(fieldSize, moves, ref currentRow, ref currentColl, i);
 
                 if (field[currentRow, currentColl] == "c")
                 {
@@ -70,6 +45,38 @@ namespace Miner
 
             Console.WriteLine($"{coalsOnField - coalCollected} coals left. ({currentRow}, {currentColl})");
         }
+
+        private static void MakingMoves(int fieldSize, string[] moves, ref int currentRow, ref int currentColl, int i)
+        {
+            switch (moves[i])
+            {
+                case "left":
+                    if (currentColl - 1 >= 0)
+                    {
+                        currentColl -= 1;
+                    }
+                    break;
+                case "right":
+                    if (currentColl + 1 < fieldSize)
+                    {
+                        currentColl += 1;
+                    }
+                    break;
+                case "up":
+                    if (currentRow - 1 >= 0)
+                    {
+                        currentRow -= 1;
+                    }
+                    break;
+                case "down":
+                    if (currentRow + 1 < fieldSize)
+                    {
+                        currentRow += 1;
+                    }
+                    break;
+            }
+        }
+
         private static void CreatingCoalField(int fieldSize, string[,] field, ref int currentRow, ref int currentColl, ref int coalsOnField)
         {
             for (int i = 0; i < fieldSize; i++)

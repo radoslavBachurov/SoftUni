@@ -7,7 +7,7 @@ namespace Knight_Game
     class Program
     {
         static char[,] chessBoard;
-        static Dictionary<int, Parameter> moveParametres;
+        static Parameter[] moveParametres;
         static int countRemoves;
 
         static void Main(string[] args)
@@ -16,7 +16,7 @@ namespace Knight_Game
             chessBoard = new char[boardSize, boardSize];
 
             CreatingChessBoard();
-            moveParametres = new Dictionary<int, Parameter>();
+            moveParametres = new Parameter[8];
             CreatingParametres();
 
             FindingMostAgressiveHorse();
@@ -25,14 +25,14 @@ namespace Knight_Game
 
         private static void CreatingParametres()
         {
-            moveParametres.Add(1, new Parameter(-2, 1));
-            moveParametres.Add(2, new Parameter(-2, -1));
-            moveParametres.Add(3, new Parameter(2, 1));
-            moveParametres.Add(4, new Parameter(2, -1));
-            moveParametres.Add(5, new Parameter(1, 2));
-            moveParametres.Add(6, new Parameter(-1, 2));
-            moveParametres.Add(7, new Parameter(1, -2));
-            moveParametres.Add(8, new Parameter(-1, -2));
+            moveParametres[0] = new Parameter(-2, 1);
+            moveParametres[1] = new Parameter(-2, -1);
+            moveParametres[2] = new Parameter(2, 1);
+            moveParametres[3] = new Parameter(2, -1);
+            moveParametres[4] = new Parameter(1, 2);
+            moveParametres[5] = new Parameter(-1, 2);
+            moveParametres[6] = new Parameter(1, -2);
+            moveParametres[7] = new Parameter(-1, -2);
         }
 
         private static void FindingMostAgressiveHorse()
@@ -55,7 +55,7 @@ namespace Knight_Game
                         foreach (var parametres in moveParametres)
                         {
                             if (chessBoard[row, coll] == 'K' &&
-                                Validation(row + parametres.Value.Row, coll + parametres.Value.Coll))
+                                Validation(row + parametres.Row, coll + parametres.Coll))
                             {
                                 currentHorseAtackPoints++;
                             }

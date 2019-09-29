@@ -1,171 +1,115 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Knight_Game
 {
     class Program
     {
+        static char[,] chessBoard;
+        static Dictionary<int, Parameter> moveParametres;
+        static int countRemoves;
+
         static void Main(string[] args)
         {
             int boardSize = int.Parse(Console.ReadLine());
-            Knight[,] board = new Knight[boardSize, boardSize];
-            CreatingBoards(boardSize, board);
+            chessBoard = new char[boardSize, boardSize];
 
-            int countRemoves = 0;
-            bool search = true;
-            while (search)
-            {
-                RefreshingThreatInformation(boardSize, board);
+            CreatingChessBoard();
+            moveParametres = new Dictionary<int, Parameter>();
+            CreatingParametres();
 
-                search = false;
-                search = FindingMostThreatedHorse(boardSize, board, search);
-
-                int max = int.MinValue;
-                int indexRow = -1;
-                int indexColl = -1;
-                RemovesMostThreatedHorse(boardSize, board, ref countRemoves, ref max, ref indexRow, ref indexColl);
-            }
-
+            FindingMostAgressiveHorse();
             Console.WriteLine(countRemoves);
         }
 
-        private static void RemovesMostThreatedHorse(int boardSize, Knight[,] board, ref int countRemoves, ref int max, ref int indexRow, ref int indexColl)
+        private static void CreatingParametres()
         {
-            for (int i = 0; i < boardSize; i++)
-            {
-                for (int t = 0; t < boardSize; t++)
-                {
-                    if (board[i, t].canTakeHits > max)
-                    {
-                        max = board[i, t].canTakeHits;
-                        indexRow = i;
-                        indexColl = t;
-                    }
-                }
-            }
-
-            if (max != -1 && max != 0)
-            {
-                board[indexRow, indexColl].canTakeHits = -1;
-                countRemoves++;
-            }
+            moveParametres.Add(1, new Parameter(-2, 1));
+            moveParametres.Add(2, new Parameter(-2, -1));
+            moveParametres.Add(3, new Parameter(2, 1));
+            moveParametres.Add(4, new Parameter(2, -1));
+            moveParametres.Add(5, new Parameter(1, 2));
+            moveParametres.Add(6, new Parameter(-1, 2));
+            moveParametres.Add(7, new Parameter(1, -2));
+            moveParametres.Add(8, new Parameter(-1, -2));
         }
 
-        private static bool FindingMostThreatedHorse(int boardSize, Knight[,] board, bool search)
+        private static void FindingMostAgressiveHorse()
         {
-            for (int i = 0; i < boardSize; i++)
+            countRemoves = 0;
+            int mostAgrresiveHorse = 1;
+
+            while (mostAgrresiveHorse != 0)
             {
-                for (int t = 0; t < boardSize; t++)
+                int agressiveHorseRow = 0;
+                int agressiveHorseBoll = 0;
+                mostAgrresiveHorse = 0;
+
+                for (int row = 0; row < chessBoard.GetLength(0); row++)
                 {
-                    if (i - 2 >= 0 && t - 1 >= 0 && board[i, t].canTakeHits != -1)
+                    for (int coll = 0; coll < chessBoard.GetLength(1); coll++)
                     {
-                        if (board[i - 2, t - 1].canTakeHits != -1)
+                        int currentHorseAtackPoints = 0;
+
+                        foreach (var parametres in moveParametres)
                         {
-                            board[i - 2, t - 1].canTakeHits++;
-                            search = true;
+                            if (chessBoard[row, coll] == 'K' &&
+                                Validation(row + parametres.Value.Row, coll + parametres.Value.Coll))
+                            {
+                                currentHorseAtackPoints++;
+                            }
                         }
-                    }
-                    if (i - 2 >= 0 && t + 1 < boardSize && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i - 2, t + 1].canTakeHits != -1)
+
+                        if (currentHorseAtackPoints > mostAgrresiveHorse)
                         {
-                            board[i - 2, t + 1].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (i + 2 < boardSize && t - 1 >= 0 && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i + 2, t - 1].canTakeHits != -1)
-                        {
-                            board[i + 2, t - 1].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (i + 2 < boardSize && t + 1 < boardSize && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i + 2, t + 1].canTakeHits != -1)
-                        {
-                            board[i + 2, t + 1].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (t - 2 >= 0 && i - 1 >= 0 && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i - 1, t - 2].canTakeHits != -1)
-                        {
-                            board[i - 1, t - 2].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (t - 2 >= 0 && i + 1 < boardSize && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i + 1, t - 2].canTakeHits != -1)
-                        {
-                            board[i + 1, t - 2].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (t + 2 < boardSize && i - 1 >= 0 && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i - 1, t + 2].canTakeHits != -1)
-                        {
-                            board[i - 1, t + 2].canTakeHits++;
-                            search = true;
-                        }
-                    }
-                    if (t + 2 < boardSize && i + 1 < boardSize && board[i, t].canTakeHits != -1)
-                    {
-                        if (board[i + 1, t + 2].canTakeHits != -1)
-                        {
-                            board[i + 1, t + 2].canTakeHits++;
-                            search = true;
+                            mostAgrresiveHorse = currentHorseAtackPoints;
+                            agressiveHorseRow = row;
+                            agressiveHorseBoll = coll;
                         }
                     }
                 }
-            }
 
-            return search;
-        }
-
-        private static void RefreshingThreatInformation(int boardSize, Knight[,] board)
-        {
-            for (int i = 0; i < boardSize; i++)
-            {
-                for (int t = 0; t < boardSize; t++)
+                if (mostAgrresiveHorse != 0)
                 {
-                    if (board[i, t].canTakeHits != -1)
-                    {
-                        board[i, t].canTakeHits = 0;
-                    }
+                    chessBoard[agressiveHorseRow, agressiveHorseBoll] = '0';
+                    countRemoves++;
                 }
             }
         }
 
-        private static void CreatingBoards(int boardSize, Knight[,] board)
+        private static bool Validation(int row, int coll)
         {
-            for (int i = 0; i < boardSize; i++)
-            {
-                char[] input = Console.ReadLine().ToCharArray();
+            return row >= 0 && row < chessBoard.GetLength(0) &&
+                coll >= 0 && coll < chessBoard.GetLength(1) &&
+                chessBoard[row, coll] == 'K';
+        }
 
-                for (int t = 0; t < boardSize; t++)
+        private static void CreatingChessBoard()
+        {
+            for (int row = 0; row < chessBoard.GetLength(0); row++)
+            {
+                char[] input = Console.ReadLine()
+                    .ToCharArray()
+                    .Where(c => c != ' ')
+                    .ToArray();
+
+                for (int coll = 0; coll < chessBoard.GetLength(1); coll++)
                 {
-                    if (input[t] == '0')
-                    {
-                        board[i, t] = new Knight(-1);
-                    }
-                    else
-                    {
-                        board[i, t] = new Knight(0);
-                    }
+                    chessBoard[row, coll] = input[coll];
                 }
             }
         }
     }
-    class Knight
+    class Parameter
     {
-        public Knight(int input)
+        public Parameter(int row, int coll)
         {
-            canTakeHits = input;
+            Row = row;
+            Coll = coll;
         }
-        public int canTakeHits { get; set; }
+        public int Row { get; set; }
+        public int Coll { get; set; }
     }
 }
+

@@ -35,8 +35,6 @@ namespace Wardrobe
 
                 foreach (var clothe in clothes)
                 {
-
-
                     if (!wardrobe[color].Any(x => x.Name == clothe))
                     {
                         ClotheItem newItem = new ClotheItem(clothe, 0);

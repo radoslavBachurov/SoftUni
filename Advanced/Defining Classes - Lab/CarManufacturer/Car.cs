@@ -13,6 +13,8 @@ namespace CarManufacturer
             Year = 2025;
             FuelQuantity = 200;
             FuelConsumption = 10;
+            Engine = new Engine(0, 0);
+            Tire = new Tire[4];
         }
         public Car(string make, string model, int year) : this()
         {
@@ -20,26 +22,27 @@ namespace CarManufacturer
             Model = model;
             Year = year;
         }
-        public Car(string make, string model, int year, double fuelQuantity, double fuelConsumption) : this(make, model, year)
+        public Car(string make, string model, int year, double fuelQuantity, double fuelConsumption)
+            : this(make, model, year)
         {
             FuelConsumption = fuelConsumption;
             FuelQuantity = fuelQuantity;
         }
-        public Car(string make, string model, int year, double fuelQuantity, double fuelConsumption,Engine newEngine,Tire[] newTire)
-            : this(make,model,year,fuelQuantity,fuelConsumption)
+        public Car(string make, string model, int year, double fuelQuantity, double fuelConsumption, Engine newEngine, Tire[] newTire)
+            : this(make, model, year, fuelQuantity, fuelConsumption)
         {
             Engine = newEngine;
             Tire = newTire;
         }
 
 
-        public string Make {private get; set; }
-        public string Model {private get; set; }
-        public int Year {private get; set; }
-        public double FuelQuantity { private get; set; }
-        public double FuelConsumption { private get; set; }
-        public Engine Engine { private get; set; }
-        public Tire[] Tire { private get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public double FuelQuantity { get; set; }
+        public double FuelConsumption { get; set; }
+        public Engine Engine { get; set; }
+        public Tire[] Tire { get; set; }
 
         public void Drive(double distance)
         {

@@ -7,15 +7,15 @@ namespace SoftUniParking
 {
     public class Parking
     {
+        private int capacity;
         public Parking(int capacity)
         {
             ListOfCars = new List<Car>();
             Count = 0;
-            Capacity = capacity;
+            this.capacity = capacity;
         }
-        private List<Car> ListOfCars { get; set; }
-        private int Capacity {  get;   set; }
-        public int Count { get; set; } 
+        public List<Car> ListOfCars { get; set; }
+        public int Count { get; private set; }
 
         public string AddCar(Car car)
         {
@@ -23,17 +23,15 @@ namespace SoftUniParking
             {
                 return "Car with that registration number, already exists!";
             }
-            else if (ListOfCars.Count >= Capacity)
+            else if (ListOfCars.Count >= this.capacity)
             {
                 return "Parking is full!";
             }
-            else
-            {
-                ListOfCars.Add(car);
-                Count = ListOfCars.Count;
-                return $"Successfully added new car {car.Make} {car.RegistrationNumber}";
 
-            }
+            ListOfCars.Add(car);
+            Count = ListOfCars.Count;
+            return $"Successfully added new car {car.Make} {car.RegistrationNumber}";
+
         }
 
         public string RemoveCar(string registrationNumber)
@@ -53,8 +51,8 @@ namespace SoftUniParking
 
         public Car GetCar(string registrationNumber)
         {
-            Car carForRemove = ListOfCars.Find(x => x.RegistrationNumber == registrationNumber);
-            return carForRemove;
+            Car carToGet = ListOfCars.Find(x => x.RegistrationNumber == registrationNumber);
+            return carToGet;
         }
 
         public void RemoveSetOfRegistrationNumber(List<string> registrationNumbers)

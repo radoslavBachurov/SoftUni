@@ -28,7 +28,7 @@ namespace SoftUniParking
             newSB.AppendLine($"HorsePower: {HorsePower}");
             newSB.Append($"RegistrationNumber: {RegistrationNumber}");
 
-            return newSB.ToString();
+            return newSB.ToString().Trim();
         }
     }
 }

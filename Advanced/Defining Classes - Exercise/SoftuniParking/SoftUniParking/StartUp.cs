@@ -35,6 +35,8 @@ namespace SoftUniParking
             //Successfullyremoved EB8787MN
 
             Console.WriteLine(parking.Count); //1
+
+            
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summer Cocktails", "Summer Cocktails\Summer Cocktails.csproj", "{89A4E36C-089E-4A11-90E5-725A26CC451B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seashell Treasure", "Seashell Treasure\Seashell Treasure.csproj", "{664CEE65-CFB6-4727-B741-2FFE689E5691}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89A4E36C-089E-4A11-90E5-725A26CC451B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A4E36C-089E-4A11-90E5-725A26CC451B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A4E36C-089E-4A11-90E5-725A26CC451B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A4E36C-089E-4A11-90E5-725A26CC451B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664CEE65-CFB6-4727-B741-2FFE689E5691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664CEE65-CFB6-4727-B741-2FFE689E5691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664CEE65-CFB6-4727-B741-2FFE689E5691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664CEE65-CFB6-4727-B741-2FFE689E5691}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADE50E18-CD99-4003-ADAB-AFF97DD23261}
+	EndGlobalSection
+EndGlobal

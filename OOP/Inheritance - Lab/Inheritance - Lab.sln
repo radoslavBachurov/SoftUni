@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleInheritance", "SingleInheritance\SingleInheritance.csproj", "{AD78D59E-A805-4887-8E3A-E6D152048BD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleInheritance", "SingleInheritance\SingleInheritance.csproj", "{AD78D59E-A805-4887-8E3A-E6D152048BD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRandomList", "CustomRandomList\CustomRandomList.csproj", "{33C47C55-F98B-4483-B5E4-BD1E6DEB1DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStack", "CustomStack\CustomStack.csproj", "{429D5745-EED9-4407-888D-C3B626AD3E4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AD78D59E-A805-4887-8E3A-E6D152048BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD78D59E-A805-4887-8E3A-E6D152048BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD78D59E-A805-4887-8E3A-E6D152048BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33C47C55-F98B-4483-B5E4-BD1E6DEB1DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C47C55-F98B-4483-B5E4-BD1E6DEB1DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C47C55-F98B-4483-B5E4-BD1E6DEB1DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C47C55-F98B-4483-B5E4-BD1E6DEB1DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429D5745-EED9-4407-888D-C3B626AD3E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429D5745-EED9-4407-888D-C3B626AD3E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429D5745-EED9-4407-888D-C3B626AD3E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429D5745-EED9-4407-888D-C3B626AD3E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

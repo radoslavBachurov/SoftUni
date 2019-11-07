@@ -6,17 +6,13 @@ namespace Restaurant.FoodMenu
 {
     public class Cake : Dessert
     {
-        private const double grams = 250;
-        private const double calories = 1000;
-        private const double cakePrice = 5;
+        private const double CakeGrams = 250;
+        private const double CakeCalories = 1000;
+        private const decimal CakePrice = 5;
 
-        public Cake(string name, decimal price, double grams, double calories)
-            : base(name, price, grams, calories)
+        public Cake(string name)
+            : base(name, CakePrice, CakeGrams, CakeCalories)
         {
         }
-
-        public override double Grams => grams;
-        public override double Calories => calories;
-        public double CakePrice => cakePrice;
-    }
+}
 }

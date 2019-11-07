@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Restaurant
 {
-    public class Product
+    public abstract class Product
     {
         public Product(string name,decimal price)
         {

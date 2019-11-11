@@ -15,8 +15,11 @@ namespace FootballTeamGenerator
             this.players = new List<Player>();
         }
 
-        private List<Player> players {  get;  set; }
+        private List<Player> players { get; set; }
+
         public IReadOnlyCollection<Player> playersInfo => this.players;
+
+        public int Rating => this.CalculateRating();
 
         public string Name
         {
@@ -35,24 +38,9 @@ namespace FootballTeamGenerator
             }
         }
 
-        public int Rating => this.CalculateRating();
-
         private int CalculateRating()
         {
-            double rating = 0;
-
-            foreach (var player in players)
-            {
-                rating += player.PlayerStats.OverallSkillLevel;
-            }
-
-            rating /= players.Count;
-
-            if (players.Count == 0)
-            {
-                rating = 0;
-            }
-
+            double rating = this.players.Any() ? this.players.Average(p => p.SkillLevel) : 0;
             return (int)Math.Round(rating);
         }
 

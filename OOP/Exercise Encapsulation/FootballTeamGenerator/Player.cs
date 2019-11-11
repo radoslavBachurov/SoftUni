@@ -37,5 +37,7 @@ namespace FootballTeamGenerator
                 }
             }
         }
+
+        public double SkillLevel => playerStats.OverallSkillLevel;
     }
 }

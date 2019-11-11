@@ -21,55 +21,39 @@ namespace FootballTeamGenerator
             {
                 try
                 {
-                    string[] inputArr = input.Split(";", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                    string[] inputArr = input
+                        .Split(";", StringSplitOptions.RemoveEmptyEntries).ToArray();
 
                     if (inputArr[0] == "Team")
                     {
-                        if (!ValidateTeam(inputArr[1]))
-                        {
-                            Team newTeam = new Team(inputArr[1]);
-                            teams.Add(newTeam);
-                        }
+                        Team newTeam = new Team(inputArr[1]);
+                        teams.Add(newTeam);
                     }
 
                     else if (inputArr[0] == "Add")
                     {
+                        ValidateTeam.TeamValidation(inputArr[1], teams);
                         BuyingPlayers.AddPlayer(inputArr, teams);
                     }
 
                     else if (inputArr[0] == "Remove")
                     {
-                        SellingPlayer.RemovePlayer(teams,inputArr);
-                        
+                        ValidateTeam.TeamValidation(inputArr[1], teams);
+                        SellingPlayer.RemovePlayer(teams, inputArr);
                     }
+
                     else if (inputArr[0] == "Rating")
                     {
-                        if (ValidateTeam(inputArr[1]))
-                        {
-                            Team team = teams.Find(x => x.Name == inputArr[1]);
-                            Console.WriteLine($"{team.Name} - {team.Rating}");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Team {inputArr[1]} does not exist.");
-                            throw new Exception();
-                        }
+                        ValidateTeam.TeamValidation(inputArr[1], teams);
+                        Team team = teams.Find(x => x.Name == inputArr[1]);
+                        Console.WriteLine($"{team.Name} - {team.Rating}");
+
                     }
                 }
                 catch (Exception)
                 {
-
                 }
             }
-        }
-
-        private bool ValidateTeam(string teamName)
-        {
-            if (teams.Any(x => x.Name == teamName))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

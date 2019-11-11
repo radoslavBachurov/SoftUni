@@ -16,16 +16,9 @@ namespace FootballTeamGenerator
             Stats newStats = new Stats(stats[0], stats[1], stats[2], stats[3], stats[4]);
             Player newPlayer = new Player(player, newStats);
 
-            if (teams.Any(x => x.Name == team))
-            {
-                Team toAdd = teams.Find(x => x.Name == team);
-                toAdd.AddPlayer(newPlayer);
-            }
-            else
-            {
-                Console.WriteLine($"Team {team} does not exist.");
-                throw new Exception();
-            }
+            ValidateTeam.TeamValidation(input[1], teams);
+            Team toAdd = teams.Find(x => x.Name == team);
+            toAdd.AddPlayer(newPlayer);
         }
     }
 }

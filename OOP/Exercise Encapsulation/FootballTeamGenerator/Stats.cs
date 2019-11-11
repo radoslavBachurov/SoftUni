@@ -26,15 +26,8 @@ namespace FootballTeamGenerator
             get { return this.endurance; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    this.endurance = value;
-                }
-                else
-                {
-                    Console.WriteLine("Endurance should be between 0 and 100.");
-                    throw new ArgumentException();
-                }
+                StatValidator(value, "Endurance");
+                this.endurance = value;
             }
         }
 
@@ -43,15 +36,8 @@ namespace FootballTeamGenerator
             get { return this.sprint; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    this.sprint = value;
-                }
-                else
-                {
-                    Console.WriteLine("Sprint should be between 0 and 100.");
-                    throw new ArgumentException();
-                }
+                StatValidator(value, "Sprint");
+                this.sprint = value;
             }
         }
 
@@ -60,15 +46,8 @@ namespace FootballTeamGenerator
             get { return this.dribble; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    this.dribble = value;
-                }
-                else
-                {
-                    Console.WriteLine("Dribble should be between 0 and 100.");
-                    throw new ArgumentException();
-                }
+                StatValidator(value, "Dribble");
+                this.dribble = value;
             }
         }
 
@@ -77,15 +56,8 @@ namespace FootballTeamGenerator
             get { return this.passing; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    this.passing = value;
-                }
-                else
-                {
-                    Console.WriteLine("Passing should be between 0 and 100.");
-                    throw new ArgumentException();
-                }
+                StatValidator(value, "Passing");
+                this.passing = value;
             }
         }
 
@@ -94,19 +66,23 @@ namespace FootballTeamGenerator
             get { return this.shooting; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    this.shooting = value;
-                }
-                else
-                {
-                    Console.WriteLine("Shooting should be between 0 and 100.");
-                    throw new ArgumentException();
-                }
+                StatValidator(value, "Shooting");
+                this.shooting = value;
             }
         }
 
+
         public double OverallSkillLevel => (this.Endurance + this.Dribble +
             this.Shooting + this.Sprint + this.Passing) / 5.0;
+
+
+        private static void StatValidator(int value, string stat)
+        {
+            if (value < 0 || value > 100)
+            {
+                Console.WriteLine($"{stat} should be between 0 and 100.");
+                throw new ArgumentException();
+            }
+        }
     }
 }

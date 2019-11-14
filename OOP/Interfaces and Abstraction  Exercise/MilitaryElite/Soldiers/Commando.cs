@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class Commando : SpecialisedSoldier, ICommando,ISoldier
+    public class Commando : SpecialisedSoldier, ICommando, ISoldier
     {
         List<Mission> missions;
         public Commando(string id, string firstName, string lastName, string corps, decimal salary)
@@ -18,7 +18,7 @@ namespace MilitaryElite.Soldiers
 
         public void AddMissions(string name, string state)
         {
-            if (state.ToLower() != "finished" && state.ToLower() != "inprogress")
+            if (state == "Finished" || state == "inProgress")
             {
                 this.missions.Add(new Mission(name, state));
             }
@@ -33,8 +33,7 @@ namespace MilitaryElite.Soldiers
         public override string ToString()
         {
             var newSb = new StringBuilder();
-            newSb.AppendLine($"{base.ToString()}Salary: {this.Salary}");
-            newSb.AppendLine($"Corps: {this.Corps}");
+            newSb.AppendLine($"{base.ToString()}");
             newSb.AppendLine("Missions:");
             foreach (var mission in this.missions)
             {

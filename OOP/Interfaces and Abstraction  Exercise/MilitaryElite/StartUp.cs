@@ -6,7 +6,8 @@ namespace MilitaryElite
     {
         static void Main(string[] args)
         {
-           
+            Engine newEngine = new Engine();
+            newEngine.Run();
         }
     }
 }

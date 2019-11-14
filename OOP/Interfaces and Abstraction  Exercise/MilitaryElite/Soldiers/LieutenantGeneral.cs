@@ -27,7 +27,7 @@ namespace MilitaryElite.Soldiers
         public override string ToString()
         {
             var newSb = new StringBuilder();
-            newSb.AppendLine($"{base.ToString()}Salary: {this.Salary}");
+            newSb.AppendLine($"{base.ToString()}Salary: {this.Salary:f2}");
             newSb.AppendLine("Privates:");
             foreach (var newPrivate in this.listOfPrivates)
             {

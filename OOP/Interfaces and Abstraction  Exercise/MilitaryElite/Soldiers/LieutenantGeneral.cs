@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class LieutenantGeneral : Soldier , ILieutenantGeneral,ISoldier
+    public class LieutenantGeneral : Soldier , ILieutenantGeneral
     {
         HashSet<IPrivate> listOfPrivates;
         public LieutenantGeneral(string id, string firstName, string lastName,decimal salary)

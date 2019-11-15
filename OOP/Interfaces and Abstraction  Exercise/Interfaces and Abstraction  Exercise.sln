@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefineAnInterfaceIPerson", "Define an Interface IPerson\DefineAnInterfaceIPerson.csproj", "{0894BE36-42B3-41F5-8250-32AF999D34DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefineAnInterfaceIPerson", "Define an Interface IPerson\DefineAnInterfaceIPerson.csproj", "{0894BE36-42B3-41F5-8250-32AF999D34DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FerrariCreator", "FerrariCreator\FerrariCreator.csproj", "{448151CA-FABD-4081-BDFB-756FDA6E7414}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FerrariCreator", "FerrariCreator\FerrariCreator.csproj", "{448151CA-FABD-4081-BDFB-756FDA6E7414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telephony", "Telephony\Telephony.csproj", "{E44335A2-7289-46B1-BFCB-C177B6FEBC5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telephony", "Telephony\Telephony.csproj", "{E44335A2-7289-46B1-BFCB-C177B6FEBC5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Border", "Border\Border.csproj", "{9BD51BD1-C7A5-4263-B50A-27A8353DCE89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Border", "Border\Border.csproj", "{9BD51BD1-C7A5-4263-B50A-27A8353DCE89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food", "Food Shortage\Food.csproj", "{55F9582E-AB12-4890-9F46-C15075778840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Food", "Food Shortage\Food.csproj", "{55F9582E-AB12-4890-9F46-C15075778840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilitaryElite", "MilitaryElite\MilitaryElite.csproj", "{3A45C2C4-490A-4DF7-A94D-F9E5C0D7DF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilitaryElite", "MilitaryElite\MilitaryElite.csproj", "{3A45C2C4-490A-4DF7-A94D-F9E5C0D7DF72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionHierarchy", "CollectionHierarchy\CollectionHierarchy.csproj", "{F389C14E-BFF0-4F61-BFC8-7E1C8FADFFE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3A45C2C4-490A-4DF7-A94D-F9E5C0D7DF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A45C2C4-490A-4DF7-A94D-F9E5C0D7DF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A45C2C4-490A-4DF7-A94D-F9E5C0D7DF72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F389C14E-BFF0-4F61-BFC8-7E1C8FADFFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F389C14E-BFF0-4F61-BFC8-7E1C8FADFFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F389C14E-BFF0-4F61-BFC8-7E1C8FADFFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F389C14E-BFF0-4F61-BFC8-7E1C8FADFFE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

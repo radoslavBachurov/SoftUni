@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class Spy : Soldier, ISpy, ISoldier
+    public class Spy : Soldier, ISpy
     {
         public Spy(string id, string firstName, string lastName, int codeNumber)
             : base(id, firstName, lastName)

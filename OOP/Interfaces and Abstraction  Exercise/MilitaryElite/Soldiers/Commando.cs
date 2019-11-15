@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class Commando : SpecialisedSoldier, ICommando, ISoldier
+    public class Commando : SpecialisedSoldier, ICommando
     {
         List<Mission> missions;
         public Commando(string id, string firstName, string lastName, string corps, decimal salary)

@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class Engineer : SpecialisedSoldier, IEngineer, ISoldier
+    public class Engineer : SpecialisedSoldier, IEngineer
     {
         private List<Part> parts;
         public Engineer(string id, string firstName, string lastName, string corps, decimal salary)

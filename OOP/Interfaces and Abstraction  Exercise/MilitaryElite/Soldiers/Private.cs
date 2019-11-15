@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public class Private : Soldier, ISoldier, IPrivate
+    public class Private : Soldier, IPrivate
     {
         public Private(string id, string firstName, string lastName,decimal salary) 
             : base(id, firstName, lastName)

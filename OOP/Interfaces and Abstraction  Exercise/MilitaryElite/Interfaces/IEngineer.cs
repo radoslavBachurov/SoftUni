@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MilitaryElite.Interfaces
 {
-    public interface IEngineer
+    public interface IEngineer : ISpecialisedSoldier
     {
         IReadOnlyCollection<Part> Parts { get; }
     }

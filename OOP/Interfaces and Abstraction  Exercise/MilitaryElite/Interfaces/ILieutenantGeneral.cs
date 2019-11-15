@@ -4,9 +4,8 @@ using System.Text;
 
 namespace MilitaryElite.Interfaces
 {
-    public interface ILieutenantGeneral
+    public interface ILieutenantGeneral : IPrivate
     {
         IReadOnlyCollection<IPrivate> ListOfPrivates { get; }
-        decimal Salary { get; }
     }
 }

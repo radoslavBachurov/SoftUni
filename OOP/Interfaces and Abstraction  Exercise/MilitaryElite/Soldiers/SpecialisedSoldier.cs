@@ -5,7 +5,7 @@ using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Soldiers
 {
-    public abstract class SpecialisedSoldier : Soldier, ISpecialisedSoldier, ISoldier
+    public abstract class SpecialisedSoldier : Soldier, ISpecialisedSoldier
     {
         private string corps;
         public SpecialisedSoldier(string id, string firstName, string lastName, string corps, decimal salary)

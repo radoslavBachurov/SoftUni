@@ -1,4 +1,5 @@
 ﻿using System;
+using ValidationAttributes.ValidatorAttributes;
 
 namespace ValidationAttributes
 {
@@ -6,15 +7,15 @@ namespace ValidationAttributes
     {
         public static void Main(string[] args)
         {
-            //var person = new Person
-            // (
-            //     null,
-            //     -1
-            // );
+            var person = new Person
+             (
+                 "Rado",
+                 20
+             );
 
-            //bool isValidEntity = Validator.IsValid(person);
+            bool isvalidentity = Validator.IsValid(person);
 
-            //Console.WriteLine(isValidEntity);
+            Console.WriteLine(isvalidentity);
         }
     }
 }

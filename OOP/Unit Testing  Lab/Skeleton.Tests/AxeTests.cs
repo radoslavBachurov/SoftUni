@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using System;
 
-namespace Tests
+namespace Skeleton.Tests
 {
     [TestFixture]
-    public class Tests
+    public class AxeTests
     {
         private Hero testHero;
 
@@ -20,25 +20,18 @@ namespace Tests
             var beforedurability = testHero.Weapon.DurabilityPoints;
             testHero.Attack(new Dummy(3, 5));
             var afterdurability = testHero.Weapon.DurabilityPoints;
-            Assert.AreNotEqual(beforedurability, afterdurability ,"Axe Durability doesnt change after attack");
+            Assert.AreNotEqual(beforedurability, afterdurability, "Axe Durability doesnt change after attack");
         }
 
         [Test]
         public void AtackMethodIsValidIfAtackWithBrokenMethodNotPossible()
         {
-            try
+            for (int i = 0; i < 10; i++)
             {
-                for (int i = 0; i < 11; i++)
-                {
-                   testHero.Attack(new Dummy(3, 5));
-                }
-            }
-            catch (Exception)
-            {
-                Assert.Pass();
+                testHero.Attack(new Dummy(3, 5));
             }
 
-            Assert.Fail("You can still atack with broken weapon");
+            Assert.Throws<InvalidOperationException>(() => testHero.Attack(new Dummy(3, 5)));
         }
     }
 }

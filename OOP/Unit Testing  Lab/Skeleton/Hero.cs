@@ -26,7 +26,7 @@
         get { return this.weapon; }
     }
 
-    public void Attack(Dummy target)
+    public void Attack(ITarget target)
     {
         this.weapon.Attack(target);
 

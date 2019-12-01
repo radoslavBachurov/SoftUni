@@ -31,7 +31,7 @@ namespace Skeleton.Tests
                 testHero.Attack(new Dummy(3, 5));
             }
 
-            Assert.Throws<InvalidOperationException>(() => testHero.Attack(new Dummy(3, 5)));
+            Assert.Throws<InvalidOperationException>(() => testHero.Attack(new Dummy(3, 5)),"Atack with broken weapon possible");
         }
     }
 }

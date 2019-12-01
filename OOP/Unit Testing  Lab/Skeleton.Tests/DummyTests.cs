@@ -23,7 +23,7 @@ namespace Skeleton.Tests
         {
             var healthBefore = testDummy.Health;
             testHero.Attack(testDummy);
-            Assert.AreNotEqual(healthBefore, testDummy.Health);
+            Assert.AreNotEqual(healthBefore, testDummy.Health,"Damage from dummy not taken");
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Skeleton.Tests
                 testHero.Attack(testDummy);
             }
 
-            Assert.Throws<InvalidOperationException>(() => testHero.Attack(testDummy));
+            Assert.Throws<InvalidOperationException>(() => testHero.Attack(testDummy),"Doesnt throw exception when dummy dead");
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Skeleton.Tests
 
             var endExpirience = testHero.Experience;
 
-            Assert.AreNotEqual(startExpirience, endExpirience);
+            Assert.AreNotEqual(startExpirience, endExpirience,"Dummy doesnt give exp when dies");
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Skeleton.Tests
 
             var endExpirience = testHero.Experience;
 
-            Assert.AreEqual(startExpirience, endExpirience);
+            Assert.AreEqual(startExpirience, endExpirience,"Dummy give exp when alive");
         }
 
     }

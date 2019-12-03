@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
-using CarManager;
+
+using FightingArena;
 
 
 namespace SandBox
@@ -9,7 +10,9 @@ namespace SandBox
     {
         static void Main(string[] args)
         {
-           
+            Arena test = new Arena();
+            var warriors = test.Warriors;
+
         }
     }
 }

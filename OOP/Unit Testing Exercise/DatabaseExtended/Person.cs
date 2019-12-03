@@ -1,4 +1,4 @@
-﻿namespace ExtendedDatabase
+﻿namespace ExtendedDatabases
 {
     public class Person
     {

@@ -1,4 +1,9 @@
 using NUnit.Framework;
+using CarManager;
+using System.Reflection;
+using System.Linq;
+using System;
+using System.Net.Sockets;
 
 namespace Tests
 {
@@ -9,10 +14,62 @@ namespace Tests
         {
         }
 
-        [Test]
-        public void Test1()
+        [TestCase("Constructor doesnt work correctly")]
+        public void ValidIfConstructorsWorksCorrectly(string message)
         {
-            Assert.Pass();
+            var testCar = new Car("Ferrari", "Spyder", 7.6, 100.7);
+            Assert.AreEqual(testCar.FuelConsumption, 7.6, message);
+            Assert.AreEqual(testCar.Make, "Ferrari", message);
+            Assert.AreEqual(testCar.FuelCapacity, 100.7, message);
+            Assert.AreEqual(testCar.Model, "Spyder", message);
+            Assert.AreEqual(testCar.FuelAmount, 0, message);
+        }
+
+        [TestCase("Doesnt throw exception if make is null or empty")]
+        public void ValidIfThrowsExceptionIfMakeIsNullOrEmpty(string message)
+        {
+            Assert.That(() => new Car("", "Spyder", 7.6, 100.7), Throws.ArgumentException, message);
+            Assert.That(() => new Car(null, "Spyder", 7.6, 100.7), Throws.ArgumentException, message);
+        }
+
+        [TestCase("Doesnt throw exception if model is null or empty")]
+        public void ValidIfThrowsExceptionIfModelIsNullOrEmpty(string message)
+        {
+            Assert.That(() => new Car("Ferrari", null, 7.6, 100.7), Throws.ArgumentException, message);
+            Assert.That(() => new Car("Ferrari", "", 7.6, 100.7), Throws.ArgumentException, message);
+        }
+
+        [TestCase("Doesnt throw exception if fuel consumption is zero or negative")]
+        public void ValidIfThrowsExceptionIfFuelConsumtionIsZeroOrNegative(string message)
+        {
+            Assert.That(() => new Car("Ferrari", "Spyder", 0, 100.7), Throws.ArgumentException, message);
+            Assert.That(() => new Car("Ferrari", "Spyder", -3, 100.7), Throws.ArgumentException, message);
+        }
+
+        [TestCase("Doesnt throw exception if fuelCapacity is zero or negative")]
+        public void ValidIfThrowsExceptionIfFuelIsZeroOrNegative(string message)
+        {
+            Assert.That(() => new Car("Ferrari", "Spyder", 6.4, -100), Throws.ArgumentException, message);
+            Assert.That(() => new Car("Ferrari", "Spyder", 6.4, 0), Throws.ArgumentException, message);
+        }
+
+        [TestCase("Doesnt throw exception if fuelAmount is negative")]
+        public void ValidIfThrowsExceptionIfFuelAmountIsNegative(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 6.4, 100);
+            try
+            {
+                typeof(Car).GetProperty("FuelAmount").SetValue(testCar, -100);
+                Assert.Fail(message);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.Message == "Fuel amount cannot be negative!")
+                {
+                    Assert.Pass();
+                }
+            }
+            Assert.Fail();
         }
     }
 }

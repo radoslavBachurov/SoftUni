@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ExtendedDatabase
+namespace ExtendedDatabases
 {
     public class ExtendedDatabase
     {

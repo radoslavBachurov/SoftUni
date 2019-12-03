@@ -71,5 +71,51 @@ namespace Tests
             }
             Assert.Fail();
         }
+
+        [TestCase("The Input of refuel method cannot be zero or negative")]
+        public void ValidIfThrowsExceptionWhenInputIsZeroOrNegative(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 6.4, 100);
+            Assert.That(() => testCar.Refuel(0), Throws.ArgumentException, message);
+            Assert.That(() => testCar.Refuel(-20), Throws.ArgumentException, message);
+        }
+
+        [TestCase("The Refuel method doesnt add fuel correctly")]
+        public void ValidIfRefuelMethodAddsFuelCorrectly(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 6.4, 100);
+            testCar.Refuel(30);
+            Assert.AreEqual(testCar.FuelAmount, 30, message);
+        }
+
+        [TestCase("When refueling and fuel amount is bigger than fuel capacity" +
+            "than fuel amount must be equal to fuel capacity")]
+        public void ValidIfFuelAmountIsEqualToFuelCapacityWhenFualAmountIsBigger(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 6.4, 100);
+            testCar.Refuel(120);
+            Assert.AreEqual(testCar.FuelAmount, 100, message);
+        }
+
+        [TestCase("When using Drive Method" +
+            " and Fuel needed is bigger than fuel amount you cant drive")]
+        public void ValidWhenThrowExceptionWhenFuelNeededIsBiggerThanFuelAmount(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 6.4, 100);
+            Assert.Throws<InvalidOperationException>(() => testCar.Drive(30), message);
+        }
+
+        [TestCase("When using Drive Method" +
+           "FuelAmount doesnt decreases correctly ")]
+        public void ValidIfFuelAmountDecreasesCorrectlyWhenDriving(string message)
+        {
+            var testCar = new Car("Ferrari", "Spyder", 7 , 100);
+            testCar.Refuel(100);
+            testCar.Drive(30);
+            double fuelNeeded = (30 / 100.0) * 7.0;
+            double left = 100 - fuelNeeded;
+
+            Assert.AreEqual(left, testCar.FuelAmount,message);
+        }
     }
 }

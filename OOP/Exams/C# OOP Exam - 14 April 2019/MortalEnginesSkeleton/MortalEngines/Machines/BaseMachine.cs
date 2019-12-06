@@ -67,8 +67,10 @@ namespace MortalEngines.Machines
             }
 
             double difference = this.AttackPoints - target.DefensePoints;
+
             double targetNewHealth = target.HealthPoints - difference;
 
+            
             if (targetNewHealth < 0)
             {
                 target.HealthPoints = 0;

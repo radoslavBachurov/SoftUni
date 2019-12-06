@@ -114,7 +114,7 @@
         {
             var pilotInfo = pilots.FirstOrDefault(x => x.Name == pilotReporting);
 
-            return pilotInfo.ToString();
+            return pilotInfo.Report();
         }
 
         public string MachineReport(string machineName)

@@ -11,7 +11,7 @@ namespace MortalEngines.Machines
 
         public Pilot(string name)
         {
-            this.name = name;
+            this.Name = name;
             this.Machines = new List<IMachine>();
         }
 

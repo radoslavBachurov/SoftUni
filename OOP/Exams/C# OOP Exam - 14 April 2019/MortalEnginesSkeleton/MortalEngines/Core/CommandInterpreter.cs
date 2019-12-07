@@ -8,7 +8,6 @@ namespace MortalEngines.Core
     public class CommandInterpreter : ICommandInterpreter
     {
         private readonly IMachinesManager managerController;
-        private readonly List<string> commands;
 
         public CommandInterpreter(IMachinesManager managerController)
         {

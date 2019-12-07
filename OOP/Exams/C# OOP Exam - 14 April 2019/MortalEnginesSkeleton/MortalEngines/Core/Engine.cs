@@ -26,8 +26,6 @@ namespace MortalEngines
             {
                 try
                 {
-                    string toWrite = string.Empty;
-
                     string[] inputArr = input.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
                     string result = commandInterpreter.Read(inputArr);
                     writer.Write(result);

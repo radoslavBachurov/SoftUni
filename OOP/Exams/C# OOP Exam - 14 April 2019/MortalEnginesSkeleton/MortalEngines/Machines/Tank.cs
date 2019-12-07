@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using MortalEngines.Entities.Contracts;
 
 namespace MortalEngines.Machines

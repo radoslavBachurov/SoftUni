@@ -1,6 +1,6 @@
 ﻿namespace MortalEngines.Common
 {
-    public class OutputMessages
+    public static class OutputMessages
     {
         public const string PilotHired = "Pilot {0} hired";
 
@@ -8,7 +8,7 @@
 
         public const string TankManufactured = "Tank {0} manufactured - attack: {1:F2}; defense: {2:F2}";
 
-        public const string FighterManufactured = "Fighter {0} manufactured - attack: {1:F2}; defense: {2:F2}; aggressive: {3}";
+        public const string FighterManufactured = "Fighter {0} manufactured - attack: {1:F2}; defense: {2:F2}; aggressive: ON";
 
         public const string MachineExists = "Machine {0} is manufactured already";
 

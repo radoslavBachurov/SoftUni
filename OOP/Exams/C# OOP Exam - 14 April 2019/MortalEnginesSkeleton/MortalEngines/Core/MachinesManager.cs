@@ -1,7 +1,6 @@
 ﻿namespace MortalEngines.Core
 {
     using Contracts;
-    using System.Collections;
     using System.Collections.Generic;
     using MortalEngines.Entities.Contracts;
     using System.Linq;
@@ -15,51 +14,51 @@
 
         public MachinesManager()
         {
-            pilots = new List<IPilot>();
-            machines = new List<IMachine>();
+            this.pilots = new List<IPilot>();
+            this.machines = new List<IMachine>();
         }
 
         public string HirePilot(string name)
         {
-            if (pilots.Any(x => x.Name == name))
+            if (PilotExists(name))
             {
-                return $"Pilot {name} is hired already";
+                return string.Format(OutputMessages.PilotExists, name);
             }
 
             var newPilot = new Pilot(name);
             pilots.Add(newPilot);
-            return $"Pilot {name} hired";
+            return string.Format(OutputMessages.PilotHired, name);
         }
 
         public string ManufactureTank(string name, double attackPoints, double defensePoints)
         {
-            if (machines.Any(x => x.Name == name))
+            if (MachineExists(name))
             {
-                return $"Machine {name} is manufactured already";
+                return string.Format(OutputMessages.MachineExists, name);
             }
 
             IMachine newTank = new Tank(name, attackPoints, defensePoints);
             machines.Add(newTank);
-            return $"Tank {name} manufactured - attack: {newTank.AttackPoints:f2}; defense: {newTank.DefensePoints:f2}";
+            return string.Format(OutputMessages.TankManufactured, name, newTank.AttackPoints, newTank.DefensePoints);
         }
 
         public string ManufactureFighter(string name, double attackPoints, double defensePoints)
         {
-            if (machines.Any(x => x.Name == name))
+            if (MachineExists(name))
             {
-                return $"Machine {name} is manufactured already";
+                return string.Format(OutputMessages.MachineExists, name);
             }
 
             IMachine newFighter = new Fighter(name, attackPoints, defensePoints);
             machines.Add(newFighter);
-            return $"Fighter {name} manufactured - attack: {newFighter.AttackPoints:f2}; defense: {newFighter.DefensePoints:f2}; aggressive: ON";
+            return string.Format(OutputMessages.FighterManufactured, name, newFighter.AttackPoints, newFighter.DefensePoints);
         }
 
         public string EngageMachine(string selectedPilotName, string selectedMachineName)
         {
-            if (pilots.Any(x => x.Name == selectedPilotName))
+            if (PilotExists(selectedPilotName))
             {
-                if (machines.Any(x => x.Name == selectedMachineName))
+                if (MachineExists(selectedMachineName))
                 {
                     var machine = machines.First(x => x.Name == selectedMachineName);
                     var pilot = pilots.First(x => x.Name == selectedPilotName);
@@ -68,23 +67,23 @@
                     {
                         pilot.AddMachine(machine);
                         machine.Pilot = pilot;
-                        return $"Pilot {selectedPilotName} engaged machine {selectedMachineName}";
+                        return string.Format(OutputMessages.MachineEngaged, selectedPilotName, selectedMachineName);
                     }
 
-                    return $"Machine {selectedMachineName} is already occupied";
+                    return string.Format(OutputMessages.MachineHasPilotAlready, selectedPilotName);
                 }
 
-                return $"Machine {selectedMachineName} could not be found";
+                return string.Format(OutputMessages.MachineNotFound, selectedMachineName);
             }
 
-            return $"Pilot {selectedPilotName} could not be found";
+            return string.Format(OutputMessages.PilotNotFound, selectedPilotName);
         }
 
         public string AttackMachines(string attackingMachineName, string defendingMachineName)
         {
-            if (machines.Any(x => x.Name == attackingMachineName))
+            if (MachineExists(attackingMachineName))
             {
-                if (machines.Any(x => x.Name == defendingMachineName))
+                if (MachineExists(defendingMachineName))
                 {
                     var atacker = machines.First(x => x.Name == attackingMachineName);
                     var defender = machines.First(x => x.Name == defendingMachineName);
@@ -95,19 +94,19 @@
                         {
                             atacker.Attack(defender);
 
-                            return $"Machine {defendingMachineName} was attacked by machine {attackingMachineName} - current health: {defender.HealthPoints:F2}";
+                            return string.Format(OutputMessages.AttackSuccessful, defendingMachineName, attackingMachineName, defender.HealthPoints);
                         }
 
-                        return $"Dead machine {defendingMachineName} cannot attack or be attacked";
+                        return string.Format(OutputMessages.DeadMachineCannotAttack, attackingMachineName);
                     }
 
-                    return $"Dead machine {attackingMachineName} cannot attack or be attacked";
+                    return string.Format(OutputMessages.DeadMachineCannotAttack, attackingMachineName);
                 }
 
-                return $"Machine {defendingMachineName} could not be found";
+                return string.Format(OutputMessages.MachineNotFound, defendingMachineName);
             }
 
-            return $"Machine {attackingMachineName} could not be found";
+            return string.Format(OutputMessages.MachineNotFound, attackingMachineName);
         }
 
         public string PilotReport(string pilotReporting)
@@ -126,26 +125,44 @@
 
         public string ToggleFighterAggressiveMode(string fighterName)
         {
-            if (machines.Any(x => x.Name == fighterName))
+            if ((MachineExists(fighterName)))
             {
                 var fighter = (Fighter)machines.First(x => x.Name == fighterName);
                 fighter.ToggleAggressiveMode();
-                return $"Fighter {fighterName} toggled aggressive mode";
+                return string.Format(OutputMessages.FighterOperationSuccessful, fighterName);
             }
 
-            return $"Machine {fighterName} could not be found";
+            return string.Format(OutputMessages.MachineNotFound, fighterName);
         }
 
         public string ToggleTankDefenseMode(string tankName)
         {
-            if (machines.Any(x => x.Name == tankName))
+            if ((MachineExists(tankName)))
             {
                 var tank = (Tank)machines.First(x => x.Name == tankName);
                 tank.ToggleDefenseMode();
-                return $"Tank {tankName} toggled defense mode";
+                return string.Format(OutputMessages.TankOperationSuccessful, tankName);
             }
 
-            return $"Machine {tankName} could not be found";
+            return string.Format(OutputMessages.MachineNotFound, tankName);
+        }
+
+        private bool MachineExists(string name)
+        {
+            if (machines.Any(x => x.Name == name))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool PilotExists(string name)
+        {
+            if (pilots.Any(x => x.Name == name))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

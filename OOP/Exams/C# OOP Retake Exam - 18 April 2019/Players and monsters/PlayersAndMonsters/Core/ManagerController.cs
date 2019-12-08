@@ -5,6 +5,7 @@
     using PlayersAndMonsters.Core.Factories;
     using PlayersAndMonsters.Repositories.Contracts;
     using Contracts;
+    using PlayersAndMonsters.Common;
 
     public class ManagerController : IManagerController
     {
@@ -26,7 +27,10 @@
 
         public string AddPlayer(string type, string username)
         {
-            throw new NotImplementedException();
+            var newPlayer = playerFactory.CreatePlayer(type, username);
+
+            playerRepo.Add(newPlayer);
+            return string.Format(ConstantMessages.SuccessfullyAddedPlayer, newPlayer.GetType().Name, newPlayer.Username);
         }
 
         public string AddCard(string type, string name)

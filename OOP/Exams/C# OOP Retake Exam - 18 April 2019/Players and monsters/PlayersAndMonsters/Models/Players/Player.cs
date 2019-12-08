@@ -28,7 +28,7 @@ namespace PlayersAndMonsters.Models.Players
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Player's username cannot be null or an empty string. ");
+                    throw new ArgumentException("Player's username cannot be null or an empty string.");
                 }
                 this.username = value;
             }
@@ -41,7 +41,7 @@ namespace PlayersAndMonsters.Models.Players
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Player's health bonus cannot be less than zero. ");
+                    throw new ArgumentException("Player's health bonus cannot be less than zero.");
                 }
                 this.health = value;
             }
@@ -56,12 +56,14 @@ namespace PlayersAndMonsters.Models.Players
                 throw new ArgumentException("Damage points cannot be less than zero.");
             }
 
-            this.Health -= damagePoints;
-
-            if (this.Health <= 0)
+            if (this.Health - damagePoints <= 0)
             {
                 this.Health = 0;
                 isDead = true;
+            }
+            else
+            {
+                this.Health -= damagePoints;
             }
         }
     }

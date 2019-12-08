@@ -21,15 +21,21 @@ namespace PlayersAndMonsters.Models.BattleFields
             if (attackPlayer is Beginner)
             {
                 attackPlayer.Health += 40;
-                IList<ICard> attackPlayerCards = attackPlayer.CardRepository.Cards.ToList();
-                attackPlayerCards.Select(x => x.DamagePoints += 30);
+                List<ICard> attackPlayerCards = attackPlayer.CardRepository.Cards.ToList();
+                foreach (var card in attackPlayerCards)
+                {
+                    card.DamagePoints += 30;
+                }
             }
 
             if (enemyPlayer is Beginner)
             {
                 enemyPlayer.Health += 40;
                 IList<ICard> enemyPlayerCards = enemyPlayer.CardRepository.Cards.ToList();
-                enemyPlayerCards.Select(x => x.DamagePoints += 30);
+                foreach (var card in enemyPlayerCards)
+                {
+                    card.DamagePoints += 30;
+                }
             }
 
             attackPlayer.Health += attackPlayer.CardRepository.Cards.Sum(x => x.HealthPoints);

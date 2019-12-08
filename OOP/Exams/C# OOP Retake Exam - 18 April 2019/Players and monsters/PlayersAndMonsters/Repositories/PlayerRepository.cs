@@ -28,7 +28,7 @@ namespace PlayersAndMonsters.Repositories
 
             if (this.players.Any(x => x.Username == player.Username))
             {
-                throw new ArgumentException("Player {username} already exists!");
+                throw new ArgumentException($"Player {player.Username} already exists!");
             }
 
             this.players.Add(player);

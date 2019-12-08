@@ -16,7 +16,7 @@ namespace PlayersAndMonsters.Repositories
         }
 
         public int Count => this.cards.Count;
-        public IReadOnlyCollection<ICard> Cards => this.cards;
+        public IReadOnlyCollection<ICard> Cards => this.cards.AsReadOnly();
 
         public void Add(ICard card)
         {
@@ -27,7 +27,7 @@ namespace PlayersAndMonsters.Repositories
 
             if (this.cards.Any(x => x.Name == card.Name))
             {
-                throw new ArgumentException("Card {name} already exists!");
+                throw new ArgumentException($"Card {card.Name} already exists!");
             }
 
             this.cards.Add(card);

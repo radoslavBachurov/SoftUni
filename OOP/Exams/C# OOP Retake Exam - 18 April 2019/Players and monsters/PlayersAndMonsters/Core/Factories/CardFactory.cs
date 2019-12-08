@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using PlayersAndMonsters.Core.Factories.Contracts;
 using PlayersAndMonsters.Models.Cards.Contracts;
+using PlayersAndMonsters.Repositories.Contracts;
+using PlayersAndMonsters.Repositories;
+using System.Linq;
 
 namespace PlayersAndMonsters.Core.Factories
 {
@@ -10,7 +11,17 @@ namespace PlayersAndMonsters.Core.Factories
     {
         public ICard CreateCard(string type, string name)
         {
-            throw new NotImplementedException();
+            var cardType = typeof(StartUp)
+                .Assembly
+                .GetTypes()
+                .FirstOrDefault(x => x.Name == type + "Card");
+
+            var constructor = cardType
+              .GetConstructors().First();
+
+            var newCard = (ICard)constructor.Invoke(new object[] { name });
+
+            return newCard;
         }
     }
 }

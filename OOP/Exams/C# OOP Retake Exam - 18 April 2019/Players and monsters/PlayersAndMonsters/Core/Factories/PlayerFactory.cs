@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using PlayersAndMonsters.Core.Factories.Contracts;
 using PlayersAndMonsters.Models.Players.Contracts;
 using PlayersAndMonsters.Repositories.Contracts;
@@ -18,8 +16,13 @@ namespace PlayersAndMonsters.Core.Factories
                 .GetTypes()
                 .FirstOrDefault(x => x.Name == type);
 
+            if (playerType == null)
+            {
+                throw new ArgumentException("Player of this type does not exists!");
+            }
+
             var constructor = playerType
-                .GetConstructor(new Type[] { typeof(string), typeof(ICardRepository) });
+                .GetConstructors().First();
 
             var newPlayer =(IPlayer)constructor.Invoke(new object[] { username, new CardRepository()});
 

@@ -14,6 +14,13 @@ namespace MXGP.Models.Races
         private int laps;
         private ICollection<IRider> riders;
 
+        public Race(string name, int laps)
+        {
+            this.Name = name;
+            this.Laps = laps;
+            this.riders = new List<IRider>();
+        }
+
         public string Name
         {
             get => this.name;

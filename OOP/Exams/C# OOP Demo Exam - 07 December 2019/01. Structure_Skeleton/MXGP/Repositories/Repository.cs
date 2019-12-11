@@ -14,6 +14,7 @@ namespace MXGP.Repositories
         {
             this.Models = new List<T>();
         }
+
         public void Add(T model)
         {
             Models.Add(model);
@@ -30,7 +31,7 @@ namespace MXGP.Repositories
             {
                 foreach (var prop in entity.GetType().GetProperties())
                 {
-                    if (prop.Name == "Name")
+                    if (prop.Name == "Name"||prop.Name=="Model")
                     {
                         var value = prop.GetValue(entity, null);
                         if (value.ToString() == name)

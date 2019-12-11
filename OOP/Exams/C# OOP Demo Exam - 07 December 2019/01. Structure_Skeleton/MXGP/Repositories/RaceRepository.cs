@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MXGP.Repositories
 {
-    public class RaceRepository<IRace> : Repository<IRace>,IRepository<IRace>
+    public class RaceRepository : Repository<IRace>,IRepository<IRace>
     {
     }
 }

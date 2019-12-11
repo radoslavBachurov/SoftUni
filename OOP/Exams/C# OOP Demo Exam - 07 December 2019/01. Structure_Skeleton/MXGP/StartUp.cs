@@ -15,12 +15,7 @@ namespace MXGP
     {
         public static void Main(string[] args)
         {
-            IRepository<IMotorcycle> motorRepo = new MotorcycleRepository<IMotorcycle>();
-            IRepository<IRace> raceRepo = new RaceRepository<IRace>();
-            IRepository<IRider> riderRepo = new RiderRepository<IRider>();
-
-            IChampionshipController championShipController = new ChampionshipController(
-                motorRepo, raceRepo, riderRepo);
+            IChampionshipController championShipController = new ChampionshipController();
 
             var newEngine = new Engine(championShipController);
             newEngine.Run();

@@ -17,22 +17,10 @@ namespace MXGP.Core
 {
     public class ChampionshipController : IChampionshipController
     {
-        private IRepository<IMotorcycle> motorRepo;
-        private IRepository<IRace> raceRepo;
-        private IRepository<IRider> riderRepo;
+        IRepository<IMotorcycle> motorRepo = new MotorcycleRepository();
+        IRepository<IRace> raceRepo = new RaceRepository();
+        IRepository<IRider> riderRepo = new RiderRepository();
 
-        public ChampionshipController()
-        {
-        }
-
-        public ChampionshipController(IRepository<IMotorcycle> motorRepo,
-                                      IRepository<IRace> raceRepo,
-                                      IRepository<IRider> riderRepo)
-        {
-            this.motorRepo = motorRepo;
-            this.raceRepo = raceRepo;
-            this.riderRepo = riderRepo;
-        }
 
         public string AddMotorcycleToRider(string riderName, string motorcycleModel)
         {

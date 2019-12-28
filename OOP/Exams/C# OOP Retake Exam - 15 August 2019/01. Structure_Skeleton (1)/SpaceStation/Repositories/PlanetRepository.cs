@@ -10,6 +10,12 @@ namespace SpaceStation.Repositories
     public class PlanetRepository
     {
         private List<IPlanet> models;
+
+        public PlanetRepository()
+        {
+            this.models = new List<IPlanet>();
+        }
+
         public IReadOnlyCollection<IPlanet> Models => this.models.AsReadOnly();
 
         public void Add(IPlanet model)

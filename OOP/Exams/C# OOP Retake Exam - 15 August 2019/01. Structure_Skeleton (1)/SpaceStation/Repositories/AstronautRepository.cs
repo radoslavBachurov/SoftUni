@@ -10,6 +10,12 @@ namespace SpaceStation.Repositories
     public class AstronautRepository
     {
         private List<IAstronaut> models;
+
+        public AstronautRepository()
+        {
+            this.models = new List<IAstronaut>();
+        }
+
         public IReadOnlyCollection<IAstronaut> Models => this.models.AsReadOnly();
 
         public void Add(IAstronaut model)
@@ -19,7 +25,6 @@ namespace SpaceStation.Repositories
 
         public IAstronaut FindByName(string name)
         {
-
             var astronautToReturn = this.models.Find(x => x.Name == name);
             return astronautToReturn;
         }

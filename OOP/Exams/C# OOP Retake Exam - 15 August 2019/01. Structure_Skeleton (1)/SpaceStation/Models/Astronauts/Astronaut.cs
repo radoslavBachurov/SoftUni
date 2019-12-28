@@ -18,6 +18,7 @@ namespace SpaceStation.Models.Astronauts
         {
             this.Name = name;
             this.Oxygen = oxygen;
+            this.Bag = new Backpack();
         }
 
         public string Name
@@ -60,6 +61,23 @@ namespace SpaceStation.Models.Astronauts
             {
                 this.Oxygen -= oxygenDescrease;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder newSB = new StringBuilder();
+            newSB.Append($"Name: {this.name}\r\n");
+            newSB.Append($"Oxygen: {this.oxygen}\r\n");
+
+            if (this.Bag.Items.Any())
+            {
+                newSB.Append($"Bag items: {string.Join(", ", this.Bag.Items)}\r\n");
+            }
+            else
+            {
+                newSB.Append($"Bag items: none\r\n");
+            }
+            return newSB.ToString().TrimEnd();
         }
     }
 }

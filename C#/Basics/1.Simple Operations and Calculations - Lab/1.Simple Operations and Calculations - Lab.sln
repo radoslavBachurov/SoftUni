@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Celsius to Farenheit", "Cel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birthday", "Birthday\Birthday.csproj", "{10A338E6-29B7-472D-85BF-B460534FE9EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop", "PetShop\PetShop.csproj", "{83C200C7-DFE2-470D-B89B-286B91585547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{10A338E6-29B7-472D-85BF-B460534FE9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10A338E6-29B7-472D-85BF-B460534FE9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10A338E6-29B7-472D-85BF-B460534FE9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C200C7-DFE2-470D-B89B-286B91585547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C200C7-DFE2-470D-B89B-286B91585547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C200C7-DFE2-470D-B89B-286B91585547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C200C7-DFE2-470D-B89B-286B91585547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

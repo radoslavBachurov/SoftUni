@@ -24,8 +24,7 @@ class Company {
             }
             return `New employee is hired. Name: ${username}. Position: ${position}`;
         }
-
-    }
+  }
 
     bestDepartment() {
 
@@ -55,12 +54,7 @@ class Company {
             toReturn += `${employees[0][key].username} ${employees[0][key].salary} ${employees[0][key].position}\n`;
         }
         return toReturn.trim();
-
-        //         " Best Department is: {best department's name}
-        //         Average salary: {best department's average salary}
-        //         {employee1} {salary} {position}
-
-    }
+  }
 }
 let c = new Company();
 c.addEmployee("Stanimir", 2000, "engineer", "Construction");

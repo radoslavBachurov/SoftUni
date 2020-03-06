@@ -189,7 +189,7 @@ describe('SkiResort testing behavior', function () {
 
             let message = newSki.bestHotel;
 
-            assert.equal(message ,`Best hotel is test1 with grade 15. Available beds: 6` )
+            assert.equal(message, `Best hotel is test1 with grade 15. Available beds: 6`)
         })
     })
 });

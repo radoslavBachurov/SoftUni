@@ -15,7 +15,7 @@ export let updateBook = function (id, body) {
     return fetch(apiKey + `books/${id}.json`, {
         method: 'PUT',
         body: JSON.stringify(body)
-    });
+    })
 }
 
 export let deleteBook = function (id) {

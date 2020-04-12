@@ -23,7 +23,7 @@ export default function (context) {
     });
 
     return context.loadPartials({
-        notifications: "../view/common/notifications.hbs",
+        // notifications: "../view/common/notifications.hbs",
         header: "../view/common/header.hbs",
         footer: "../view/common/footer.hbs"
     })

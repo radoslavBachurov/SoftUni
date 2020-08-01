@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstates.Data;
+using RealEstates.Services;
+using System;
+using System.Text;
 
 namespace RealEstates.ConsoleApplication
 {
@@ -6,7 +10,11 @@ namespace RealEstates.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.OutputEncoding = Encoding.UTF8;
+            var db = new RealEstateDBContext();
+            db.Database.Migrate();
+
+            IPropertiesService propertiesService = new PropertiesService(db);
         }
     }
 }

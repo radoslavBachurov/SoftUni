@@ -4,11 +4,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Xml.Serialization;
     using Data;
     using Newtonsoft.Json;
     using VaporStore.Data.Models;
+    using VaporStore.Data.Models.Enums;
     using VaporStore.DataProcessor.Dto.Import;
 
     public static class Deserializer
@@ -87,7 +90,7 @@
                 }
             }
 
-           
+
             //context.SaveChanges();
 
             return newSB.ToString().Trim();
@@ -95,12 +98,87 @@
 
         public static string ImportUsers(VaporStoreDbContext context, string jsonString)
         {
-            throw new NotImplementedException();
+            var users = JsonConvert.DeserializeObject<List<ImportUsersDTO>>(jsonString);
+            var newSB = new StringBuilder();
+
+            foreach (var user in users)
+            {
+                if (IsValid(user) &&
+                    user.Cards.Any() &&
+                    user.Cards.All(x => IsValid(x)) &&
+                    user.Cards.All(x => Enum.TryParse(x.Type, out CardType type)))
+                {
+                    var newUser = new User()
+                    {
+                        FullName = user.FullName,
+                        Age = user.Age,
+                        Email = user.Email,
+                        Username = user.Username,
+                        Cards = user.Cards.Select(x => new Card
+                        {
+                            Cvc = x.CVC,
+                            Number = x.Number,
+                            Type = (CardType)Enum.Parse(typeof(CardType), x.Type, true)
+                        }).ToArray()
+                    };
+
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+
+                    newSB.AppendLine($"Imported {newUser.Username} with {newUser.Cards.Count()} cards");
+                }
+                else
+                {
+                    newSB.AppendLine("Invalid Data");
+                }
+            }
+
+            return newSB.ToString().Trim();
         }
 
         public static string ImportPurchases(VaporStoreDbContext context, string xmlString)
         {
-            throw new NotImplementedException();
+            XmlSerializer serializer = new XmlSerializer(typeof(ImportPurchasesDTO[]), new XmlRootAttribute("Purchases"));
+            StringReader rdr = new StringReader(xmlString);
+            ImportPurchasesDTO[] purchasesDTO = (ImportPurchasesDTO[])serializer.Deserialize(rdr);
+
+            var newSB = new StringBuilder();
+
+            foreach (var purchase in purchasesDTO)
+            {
+                int? cardId = context.Cards.Where(x => x.Number == purchase.Card).Select(x => x.Id).FirstOrDefault();
+                int? gameId = context.Games.Where(x => x.Name == purchase.Title).Select(x => x.Id).FirstOrDefault();
+
+                DateTime dateValue;
+                if (IsValid(purchase) &&
+                    cardId != null &&
+                    gameId != null &&
+                    DateTime.TryParseExact(purchase.Date, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue) &&
+                       Enum.TryParse(purchase.Type, out PurchaseType type))
+                {
+                    var newPurchase = new Purchase()
+                    {
+                        CardId = (int)cardId,
+                        Date = dateValue,
+                        GameId = (int)gameId,
+                        Type = type,
+                        ProductKey = purchase.Key,
+                    };
+
+                    context.Purchases.Add(newPurchase);
+                    context.SaveChanges();
+
+                    var username = context.Cards.Where(x => x.Number == purchase.Card).Select(x => x.User.Username).FirstOrDefault();
+                    newSB.AppendLine($"Imported {purchase.Title} for {username}");
+                }
+                else
+                {
+                    newSB.AppendLine("Invalid Data");
+                }
+            }
+
+            return newSB.ToString().Trim();
+
         }
 
         private static bool IsValid(object dto)

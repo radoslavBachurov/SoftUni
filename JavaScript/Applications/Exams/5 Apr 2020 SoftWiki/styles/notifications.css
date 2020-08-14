@@ -1,0 +1,24 @@
+#successNotification {
+  background-color: rgb(51, 175, 2);
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  font-size: 25px;
+  text-align: center;
+  }
+
+  .notification #errorNotification {
+    background-color: rgb(175, 2, 2);
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 25px;
+    text-align: center;
+  
+  }

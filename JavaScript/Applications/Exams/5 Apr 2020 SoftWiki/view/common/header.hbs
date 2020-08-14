@@ -1,0 +1,21 @@
+<header>
+    {{#if isLoggedIn}}
+    <h1><a class="home" href="#/articles/dashboard">SoftWiki</a></h1>
+    <nav class="nav-buttons"></nav>
+    <a href="#/articles/create">Create</a>
+    <a href="#/user/logout">Logout</a>
+    </nav>
+
+    {{else}}
+    <h1><a class="home" href="#/login">SoftWiki</a></h1>
+    <nav class="nav-buttons"></nav>
+    <a href="#/user/register">Register</a>
+    </nav>
+
+    {{/if}}
+</header>
+<section class="notification" id="notifications">
+    <div class="p-3 mb-2 bg-success w-50 text-white text-center" id="successNotification" style = "display: none"></div>
+    <div class="p-3 mb-2 bg-danger w-50 text-white text-center" id="errorNotification" style = "display: none"></div>
+    {{!-- <div class="p-3 mb-2 bg-info w-50 text-white text-center" id="loadingNotification">{{message}}</div> --}}
+</section>

@@ -20,68 +20,67 @@
         {
 
             var gamesList = new List<Game>();
-            var gameTags = new List<GameTag>();
+            var developers = new List<Developer>();
+            var genres = new List<Genre>();
+            var tags = new List<Tag>();
 
-            var games = JsonConvert.DeserializeObject<List<ImportGamesDTO>>(jsonString);
+            var inputGames = JsonConvert.DeserializeObject<List<ImportGamesDTO>>(jsonString);
 
             var newSB = new StringBuilder();
 
-            foreach (var game in games)
+            foreach (var game in inputGames)
             {
                 DateTime dateValue;
+
                 if (IsValid(game) &&
                     game.Tags.Any() &&
                     (DateTime.TryParseExact(game.ReleaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue)))
                 {
-                    var developers = context.Developers.Where(x => x.Name == game.Developer).ToList();
-                    if (!developers.Any())
+
+                    Game newGame = new Game();
+
+                    var newDeveloper = developers.Where(x => x.Name == game.Developer).FirstOrDefault();
+                    if (newDeveloper == null)
                     {
-                        var newDeveloper = new Developer() { Name = game.Developer };
-                        context.Developers.Add(newDeveloper);
+                        newDeveloper = new Developer() { Name = game.Developer };
+                        developers.Add(newDeveloper);
                     }
 
-                    var genres = context.Genres.Where(x => x.Name == game.Genre).ToList();
-                    if (!genres.Any())
+                    newGame.Developer = newDeveloper;
+
+                    var newGenre = genres.Where(x => x.Name == game.Genre).FirstOrDefault();
+                    if (newGenre == null)
                     {
-                        var newGenre = new Genre() { Name = game.Genre };
-                        context.Genres.Add(newGenre);
+                        newGenre = new Genre() { Name = game.Genre };
+                        genres.Add(newGenre);
                     }
-                    context.SaveChanges();
 
-                    var developerId = context.Developers.Where(x => x.Name == game.Developer).Select(x => x.Id).FirstOrDefault();
-                    var genreId = context.Genres.Where(x => x.Name == game.Genre).Select(x => x.Id).FirstOrDefault();
+                    newGame.Genre = newGenre;
+                    newGame.Name = game.Name;
+                    newGame.Price = game.Price;
+                    newGame.ReleaseDate = dateValue;
 
-
-
-                    Game newGame = new Game()
-                    {
-                        Name = game.Name,
-                        Price = game.Price,
-                        ReleaseDate = dateValue,
-                        DeveloperId = developerId,
-                        GenreId = genreId
-                    };
-                    context.Games.Add(newGame);
-                    context.SaveChanges();
-
-                    var tags = context.Tags.Select(x => new { x.Name, x.Id }).ToList();
                     foreach (var tag in game.Tags)
                     {
+                        if (String.IsNullOrEmpty(tag))
+                        {
+                            continue;
+                        }
+
                         if (!tags.Any(x => tag == x.Name))
                         {
                             var newTag = new Tag() { Name = tag };
-                            context.Tags.Add(newTag);
-                            context.GameTags.Add(new GameTag() { Game = newGame, Tag = newTag });
-                            context.SaveChanges();
+                            tags.Add(newTag);
+                            newGame.GameTags.Add(new GameTag() { Game = newGame, Tag = newTag });
                         }
                         else
                         {
-                            var tagId = context.Tags.Where(x => x.Name == tag).Select(x => x.Id).FirstOrDefault();
-                            context.GameTags.Add(new GameTag() { Game = newGame, TagId = tagId });
-                            context.SaveChanges();
+                            var tagToAdd = tags.Where(x => x.Name == tag).FirstOrDefault();
+                            newGame.GameTags.Add(new GameTag() { Game = newGame, Tag = tagToAdd });
                         }
                     }
                     newSB.AppendLine($"Added {game.Name} ({game.Genre}) with {game.Tags.Count()} tags");
+                    gamesList.Add(newGame);
                 }
                 else
                 {
@@ -90,18 +89,20 @@
                 }
             }
 
-
-            //context.SaveChanges();
+            context.Games.AddRange(gamesList);
+            context.SaveChanges();
 
             return newSB.ToString().Trim();
         }
 
         public static string ImportUsers(VaporStoreDbContext context, string jsonString)
         {
-            var users = JsonConvert.DeserializeObject<List<ImportUsersDTO>>(jsonString);
+            var inputUsers = JsonConvert.DeserializeObject<List<ImportUsersDTO>>(jsonString);
             var newSB = new StringBuilder();
 
-            foreach (var user in users)
+            var users = new List<User>();
+
+            foreach (var user in inputUsers)
             {
                 if (IsValid(user) &&
                     user.Cards.Any() &&
@@ -122,8 +123,7 @@
                         }).ToArray()
                     };
 
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
+                    users.Add(newUser);
 
                     newSB.AppendLine($"Imported {newUser.Username} with {newUser.Cards.Count()} cards");
                 }
@@ -132,6 +132,9 @@
                     newSB.AppendLine("Invalid Data");
                 }
             }
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
 
             return newSB.ToString().Trim();
         }
@@ -142,6 +145,7 @@
             StringReader rdr = new StringReader(xmlString);
             ImportPurchasesDTO[] purchasesDTO = (ImportPurchasesDTO[])serializer.Deserialize(rdr);
 
+            var purchases = new List<Purchase>();
             var newSB = new StringBuilder();
 
             foreach (var purchase in purchasesDTO)
@@ -154,7 +158,7 @@
                     cardId != null &&
                     gameId != null &&
                     DateTime.TryParseExact(purchase.Date, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue) &&
-                       Enum.TryParse(purchase.Type, out PurchaseType type))
+                    Enum.TryParse(purchase.Type, out PurchaseType type))
                 {
                     var newPurchase = new Purchase()
                     {
@@ -165,8 +169,7 @@
                         ProductKey = purchase.Key,
                     };
 
-                    context.Purchases.Add(newPurchase);
-                    context.SaveChanges();
+                    purchases.Add(newPurchase);
 
                     var username = context.Cards.Where(x => x.Number == purchase.Card).Select(x => x.User.Username).FirstOrDefault();
                     newSB.AppendLine($"Imported {purchase.Title} for {username}");
@@ -177,8 +180,10 @@
                 }
             }
 
-            return newSB.ToString().Trim();
+            context.Purchases.AddRange(purchases);
+            context.SaveChanges();
 
+            return newSB.ToString().Trim();
         }
 
         private static bool IsValid(object dto)

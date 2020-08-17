@@ -1,0 +1,34 @@
+[
+    {
+        "Name":"Frizbee",
+        "Price":45
+    },
+    {
+        "Name":"ChewToyBig",
+        "Price":17
+    },
+    {
+        "Name":"ChewToySmall",
+        "Price":10
+    },
+    {
+        "Name":"FermBall",
+        "Price":34
+    },
+    {
+        "Name":"BigBall",
+        "Price":23
+    },
+    {
+        "Name":"SmallBall",
+        "Price":14
+    },
+    {
+        "Name":"StickBig",
+        "Price":24
+    },
+    {
+        "Name":"StickSmall",
+        "Price":16
+    }
+]

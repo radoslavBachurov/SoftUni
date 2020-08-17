@@ -1,0 +1,72 @@
+[
+    {
+        "Name" : "Bob",
+        "Breed" : "Dog",
+        "Age" : 3,
+        "Gender" : "Male",
+        "Price" : 300
+    },
+    {
+        "Name" : "Albert",
+        "Breed" : "Dog",
+        "Age" : 2,
+        "Gender" : "Male",
+        "Price" : 500
+    },
+    {
+        "Name" : "Alice",
+        "Breed" : "Goat",
+        "Age" : 1,
+        "Gender" : "Female",
+        "Price" : 100
+    },
+    {
+        "Name" : "Paul",
+        "Breed" : "Lizzard",
+        "Age" : 2,
+        "Gender" : "Male",
+        "Price" : 150
+    },
+    {
+        "Name" : "Hank",
+        "Breed" : "Fish",
+        "Age" : 1,
+        "Gender" : "Female",
+        "Price" : 20
+    },
+    {
+        "Name" : "David",
+        "Breed" : "Mouse",
+        "Age" : 1,
+        "Gender" : "Male",
+        "Price" : 30
+    },
+    {
+        "Name" : "Ragnar",
+        "Breed" : "Dog",
+        "Age" : 4,
+        "Gender" : "Male",
+        "Price" : 400
+    },
+    {
+        "Name" : "Tereza",
+        "Breed" : "Cat",
+        "Age" : 3,
+        "Gender" : "Female",
+        "Price" : 120
+    },
+    {
+        "Name" : "Ivan",
+        "Breed" : "Dog",
+        "Age" : 5,
+        "Gender" : "Male",
+        "Price" : 135
+    },
+    {
+        "Name" : "Bush",
+        "Breed" : "Goat",
+        "Age" : 2,
+        "Gender" : "Male",
+        "Price" : 145
+    }
+]

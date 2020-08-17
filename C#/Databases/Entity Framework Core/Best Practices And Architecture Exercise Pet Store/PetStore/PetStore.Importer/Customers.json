@@ -1,0 +1,27 @@
+[
+    {
+        "FirstName":"Ivan",
+        "LastName":"Stoev",
+        "Age":19
+    },
+    {
+        "FirstName":"Nikola",
+        "LastName":"Penev",
+        "Age":22
+    },
+    {
+        "FirstName":"Petar",
+        "LastName":"Petrov",
+        "Age":34
+    },
+    {
+        "FirstName":"Ivanina",
+        "LastName":"Karashka",
+        "Age":35
+    },
+    {
+        "FirstName":"Miglena",
+        "LastName":"Stoimenova",
+        "Age":22
+    },
+]

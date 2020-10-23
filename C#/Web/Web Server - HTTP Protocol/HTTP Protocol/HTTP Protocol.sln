@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpRequester", "HttpRequester\HttpRequester.csproj", "{12A26B3C-A91F-4583-9238-5833EA535A82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpRequester", "HttpRequester\HttpRequester.csproj", "{12A26B3C-A91F-4583-9238-5833EA535A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientDemo", "HttpClient\HttpClientDemo.csproj", "{99E38DC3-F1D3-4AA3-8B05-8B0359A8F451}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{12A26B3C-A91F-4583-9238-5833EA535A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A26B3C-A91F-4583-9238-5833EA535A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A26B3C-A91F-4583-9238-5833EA535A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E38DC3-F1D3-4AA3-8B05-8B0359A8F451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E38DC3-F1D3-4AA3-8B05-8B0359A8F451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E38DC3-F1D3-4AA3-8B05-8B0359A8F451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E38DC3-F1D3-4AA3-8B05-8B0359A8F451}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suls", "Apps\Suls\Suls.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedTrip", "Apps\SharedTrip\SharedTrip.csproj", "{64D06F06-38BD-49AE-8B74-BA7A314F7476}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Git", "Apps\Git\Git.csproj", "{788F67E8-2C47-49E5-A745-70D59F37101C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788F67E8-2C47-49E5-A745-70D59F37101C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788F67E8-2C47-49E5-A745-70D59F37101C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788F67E8-2C47-49E5-A745-70D59F37101C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788F67E8-2C47-49E5-A745-70D59F37101C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{6204167A-64AF-4AED-A891-F178B981DD6C} = {D058481A-B479-499D-ADB8-9108A526A334}
 		{DD79BC92-4BDA-4411-B298-7FD7C705D911} = {D058481A-B479-499D-ADB8-9108A526A334}
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476} = {D058481A-B479-499D-ADB8-9108A526A334}
+		{788F67E8-2C47-49E5-A745-70D59F37101C} = {D058481A-B479-499D-ADB8-9108A526A334}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DE8A1FE-A195-4206-8DF0-E23F1C7707C8}
